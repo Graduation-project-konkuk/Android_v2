@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/tab_trainers"
+        android:enabled="true"
+        android:icon="@drawable/trainer"
+        android:title="트레이너"/>
+    <item
+        android:id="@+id/tab_exercises"
+        android:enabled="true"
+        android:icon="@drawable/exercise"
+        android:title="운동"/>
+
+    <item
+        android:id="@+id/tab_plans"
+        android:enabled="true"
+        android:icon="@drawable/plan"
+        android:title="계획" />
+
+    <item
+        android:id="@+id/tab_users"
+        android:enabled="true"
+        android:icon="@drawable/user"
+        android:title="유저"/>
+
+</menu>

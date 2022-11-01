@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/layout_border"
+    android:layout_margin="2dp"
+
+    >
+
+    <TextView
+        android:id="@+id/plan_name_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+
+        android:text="날짜"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/plan_name_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="몸무게"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/plan_name_exercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="운동"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/plan_name_reps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="reps"
+        android:textSize="15dp" />
+
+
+</LinearLayout>

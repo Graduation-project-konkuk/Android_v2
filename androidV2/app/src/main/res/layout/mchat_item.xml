@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="73dp"
+    android:background="@drawable/layout_border"
+    android:layout_margin="2dp">
+    <RelativeLayout
+        android:id="@+id/mchat_layout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+    <ImageView
+        android:id="@+id/trainer_img"
+        android:layout_width="73dp"
+        android:layout_height="73dp"
+        android:src="@mipmap/ic_launcher" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/mchat_layout1"
+        android:gravity="center|left"
+        >
+        <TextView
+            android:id="@+id/mchat_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="이름 : "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/trainer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/mchat_text1"
+            android:padding="5dp"
+            android:text="NAME"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/mchat_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toEndOf="@id/trainer_name"
+            android:padding="5dp"
+            android:text="성별 : "
+            android:textSize="15dp" />
+        <TextView
+            android:id="@+id/trainer_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/mchat_text2"
+            android:padding="5dp"
+            android:text="SEX"
+            android:textSize="15dp"
+            />
+
+        <TextView
+            android:id="@+id/mchat_text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mchat_text1"
+            android:padding="5dp"
+            android:text="경력기간 : "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/trainer_historyPeriod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/trainer_name"
+            android:layout_toEndOf="@id/mchat_text3"
+            android:padding="5dp"
+            android:text="2020-10-20 ~ 2022-08-30"
+            android:textSize="15dp" />
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

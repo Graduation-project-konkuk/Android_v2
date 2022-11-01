@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:id="@+id/mSignupBlankLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mSignupLinear1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mSignupBlankLayout1">
+                <!--        <TextView-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="이메일">-->
+
+                <!--        </TextView>-->
+
+                <!--        <EditText-->
+                <!--            android:id="@+id/signupId"-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:layout_centerHorizontal="true"-->
+                <!--            android:layout_centerVertical="true"-->
+                <!--            android:layout_marginLeft="20dp"-->
+                <!--            android:hint="이메일를 입력하세요.">-->
+
+                <!--        </EditText>-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mTextInputLayout1"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:hint="아이디를 입력하세요">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mSignupId"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mSignupLinear2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_below="@id/mSignupLinear1"
+                android:layout_alignStart="@+id/mSignupLinear1"
+                android:layout_alignLeft="@+id/mSignupLinear1"
+                android:layout_marginTop="50dp">
+
+                <!--        <TextView-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="패스워드">-->
+
+                <!--        </TextView>-->
+
+                <!--        <EditText-->
+                <!--            android:id="@+id/signupPwd"-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:layout_centerHorizontal="true"-->
+                <!--            android:layout_centerVertical="true"-->
+                <!--            android:hint="패스워드를 입력하세요."-->
+                <!--            android:layout_marginLeft="7.3dp">-->
+
+                <!--        </EditText>-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mTextInputLayout2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:hint="비밀번호를 입력하세요">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mSignupPwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mSignupLinear3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_below="@id/mSignupLinear2"
+                android:layout_alignStart="@+id/mSignupLinear2"
+                android:layout_alignLeft="@+id/mSignupLinear2"
+                android:layout_marginTop="50dp">
+
+                <!--        <TextView-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="이름">-->
+
+                <!--        </TextView>-->
+
+                <!--        <EditText-->
+                <!--            android:id="@+id/signupName"-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:layout_centerHorizontal="true"-->
+                <!--            android:layout_centerVertical="true"-->
+                <!--            android:hint="이름을 입력하세요."-->
+                <!--            android:layout_marginLeft="33.5dp">-->
+
+                <!--        </EditText>-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mTextInputLayout3"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:hint="이름을 입력하세요">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mSignupName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/mSignupLinear4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mSignupLinear3"
+                android:layout_alignStart="@+id/mSignupLinear3"
+                android:layout_alignLeft="@+id/mSignupLinear3"
+                android:layout_marginTop="50dp"
+                android:gravity="center_vertical">
+
+                <!--        <TextView-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="신장">-->
+
+                <!--        </TextView>-->
+
+                <!--        <EditText-->
+                <!--            android:id="@+id/signupHeight"-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:layout_centerHorizontal="true"-->
+                <!--            android:layout_centerVertical="true"-->
+                <!--            android:layout_marginLeft="33.5dp"-->
+                <!--            android:hint="신장을 입력하세요.">-->
+                <!--    </EditText>-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mTextInputLayout4"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:hint="키를 입력하세요">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mSignupHeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mSignupLinear5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mSignupLinear4"
+                android:layout_alignStart="@+id/mSignupLinear4"
+                android:layout_alignLeft="@+id/mSignupLinear4"
+                android:layout_marginTop="50dp"
+                android:gravity="center_vertical">
+
+                <!--        <TextView-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="몸무게">-->
+
+                <!--        </TextView>-->
+
+                <!--        <EditText-->
+                <!--            android:id="@+id/signupWeight"-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:layout_centerHorizontal="true"-->
+                <!--            android:layout_centerVertical="true"-->
+                <!--            android:layout_marginLeft="21dp"-->
+                <!--            android:hint="몸무게을 입력하세요.">-->
+
+                <!--        </EditText>-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mTextInputLayout5"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:hint="몸무게를 입력하세요">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mSignupWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mSignupLinear7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mSignupLinear5"
+                android:layout_alignStart="@+id/mSignupLinear5"
+                android:layout_alignLeft="@+id/mSignupLinear5"
+                android:layout_marginTop="50dp"
+                android:gravity="center_vertical">
+
+                <!--        <TextView-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="몸무게">-->
+
+                <!--        </TextView>-->
+
+                <!--        <EditText-->
+                <!--            android:id="@+id/signupWeight"-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:layout_centerHorizontal="true"-->
+                <!--            android:layout_centerVertical="true"-->
+                <!--            android:layout_marginLeft="21dp"-->
+                <!--            android:hint="몸무게을 입력하세요.">-->
+
+                <!--        </EditText>-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mTextInputLayout7"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:hint="성별를 입력하세요">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mSignupSex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mSignupLinear8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mSignupLinear7"
+                android:layout_alignStart="@+id/mSignupLinear7"
+                android:layout_alignLeft="@+id/mSignupLinear7"
+                android:layout_marginTop="50dp"
+                android:gravity="center_vertical">
+
+                <!--        <TextView-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="몸무게">-->
+
+                <!--        </TextView>-->
+
+                <!--        <EditText-->
+                <!--            android:id="@+id/signupWeight"-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:layout_centerHorizontal="true"-->
+                <!--            android:layout_centerVertical="true"-->
+                <!--            android:layout_marginLeft="21dp"-->
+                <!--            android:hint="몸무게을 입력하세요.">-->
+
+                <!--        </EditText>-->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mTextInputLayout8"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:hint="전화번호를 입력하세요">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mSignupPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mSignupLinear6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mSignupLinear8"
+                android:weightSum="3"
+                android:gravity="center"
+                android:layout_marginTop="50dp">
+
+                <!--        <View-->
+                <!--            android:layout_width="0dp"-->
+                <!--            android:layout_height="0dp"-->
+                <!--            android:layout_weight="1"-->
+                <!--            >-->
+                <!--            -->
+                <!--        </View>-->
+                <Button
+                    android:id="@+id/mSignupBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="회원가입"
+                    >
+
+                </Button>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
