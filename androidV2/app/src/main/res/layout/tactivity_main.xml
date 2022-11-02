@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/activity_main_scene"
+    android:orientation="vertical"
+    tools:context=".trainer.TMainActivity">
+
+    <LinearLayout
+        android:id="@+id/t_home_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/t_bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:menu="@menu/tnavi_menu"
+        app:itemBackground="@android:color/white"
+        app:itemIconTint="@color/tab_color"
+        app:itemTextColor="@color/tab_color" />
+
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".trainer.ModifyPeriod">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="전송할것들"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:background="#ff7a00"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp" >
+
+        <EditText
+            android:id="@+id/my_period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="기간을 입력하세요"></EditText>
+
+        <Button
+            android:id="@+id/add_period_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="저장"></Button>
+
+        <Button
+            android:id="@+id/close_period_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닫기" />
+
+    </LinearLayout>
+
+</LinearLayout>

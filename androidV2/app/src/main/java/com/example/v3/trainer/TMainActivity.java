@@ -21,7 +21,7 @@ public class TMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mactivity_main);
+        setContentView(R.layout.tactivity_main);
 
         init();
         SettingListener(); // 리스너 등록
@@ -29,11 +29,11 @@ public class TMainActivity extends AppCompatActivity {
     }
 
     private void init(){
-        home_layout = findViewById(R.id.home_layout);
+        home_layout = findViewById(R.id.t_home_layout);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_layout, new ExerciseFragment())
+                .replace(R.id.t_home_layout, new TrainerFragment())
                 .commit();
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView = findViewById(R.id.t_bottomNavigationView);
     }
 
     private void SettingListener() {
@@ -45,21 +45,9 @@ public class TMainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.tab_exercises: {
+                case R.id.t_tab_trainers: {
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.home_layout, new ExerciseFragment())
-                            .commit();
-                    return true;
-                }
-                case R.id.tab_plans: {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.home_layout, new PlanFragment())
-                            .commit();
-                    return true;
-                }
-                case R.id.tab_users:{
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.home_layout, new UserFragment())
+                            .replace(R.id.t_home_layout, new TrainerFragment())
                             .commit();
                     return true;
                 }
