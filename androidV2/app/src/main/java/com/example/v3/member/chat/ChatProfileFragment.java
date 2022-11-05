@@ -2,25 +2,20 @@ package com.example.v3.member.chat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.v3.R;
 import com.example.v3.member.chat.video.VideoList;
 import com.example.v3.member.chat.video.YoutubeAdapter;
-
-import org.w3c.dom.Text;
+import com.example.v3.member.chat.sms.SmsActivity;
 
 import java.util.ArrayList;
 
@@ -35,6 +30,8 @@ public class ChatProfileFragment extends AppCompatActivity {
     TextView mlayout_chat_profile_introduction;
 
     RecyclerView recyclerView;
+
+    Button mlayout_chat_profile_message;
 
     ArrayList<VideoList> videoLists;
 
@@ -57,6 +54,8 @@ public class ChatProfileFragment extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.mlayout_chat_profile_recycler_view);
 
+        mlayout_chat_profile_message = (Button) findViewById(R.id.mlayout_chat_profile_message);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(recyclerView.getContext());
         recyclerView.setLayoutManager(layoutManager);
 
@@ -78,6 +77,13 @@ public class ChatProfileFragment extends AppCompatActivity {
         YoutubeAdapter youtubeAdapter = new YoutubeAdapter(videoLists,getApplicationContext());
         recyclerView.setAdapter(youtubeAdapter);
 
+        mlayout_chat_profile_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SmsActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

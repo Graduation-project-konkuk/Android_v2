@@ -1,4 +1,4 @@
-package com.example.v3.sms;
+package com.example.v3.member.chat.sms;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;

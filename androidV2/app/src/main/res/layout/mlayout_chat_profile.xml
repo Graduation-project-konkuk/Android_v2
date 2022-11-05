@@ -146,8 +146,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:nestedScrollingEnabled="true"
-                    android:scrollbars="vertical">
-                </androidx.recyclerview.widget.RecyclerView>
+                    android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mlayout_chat_profile_layout8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/mlayout_chat_profile_layout7"
+                android:padding="10dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/mlayout_chat_profile_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="메시지 보내기"
+                    android:textSize="15dp"
+                    />
 
 
             </LinearLayout>

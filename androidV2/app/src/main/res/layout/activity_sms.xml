@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".sms.SmsActivity">
+    tools:context=".member.chat.sms.SmsActivity">
 
     <Button
         android:id="@+id/button"
@@ -27,5 +27,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="#eeeeee"
-        android:hint="내용을 입력하세요." />
+        android:hint="내용을 입력하세요."
+        android:gravity="left|top"/>
 </LinearLayout>

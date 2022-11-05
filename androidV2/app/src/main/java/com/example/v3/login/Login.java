@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.v3.R;
 import com.example.v3.member.MMainActivity;
-import com.example.v3.sms.SmsActivity;
+import com.example.v3.member.chat.sms.SmsActivity;
 import com.example.v3.trainer.TMainActivity;
 
 import okhttp3.MediaType;
@@ -29,8 +29,6 @@ public class Login extends AppCompatActivity {
     private EditText loginPwd;
     private RadioGroup radioGroupLogin;
 
-    private Button go_sms;
-
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
@@ -41,15 +39,6 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_view);
-
-        go_sms = (Button) findViewById(R.id.go_sms);
-        go_sms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SmsActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
         prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
