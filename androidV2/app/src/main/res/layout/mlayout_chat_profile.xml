@@ -43,7 +43,7 @@
                     android:id="@+id/mlayout_chat_profile_img"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/trainer" />
             </LinearLayout>
 
             <LinearLayout
@@ -63,7 +63,7 @@
                     android:id="@+id/mlayout_chat_profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Trainer Name"
+                    android:text="흑자헬스"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -85,7 +85,7 @@
                     android:id="@+id/mlayout_chat_profile_sex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Trainer Sex"
+                    android:text="남자"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -107,7 +107,7 @@
                     android:id="@+id/mlayout_chat_profile_historyPeriod"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="History Period"
+                    android:text="2012.12.23~2022.10.10"
                     android:textSize="20dp" />
 
             </LinearLayout>
@@ -129,7 +129,7 @@
                     android:id="@+id/mlayout_chat_profile_introduction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Introduction"
+                    android:text="대한민국의 유튜버이자 충청북도 청주시 흥덕구 오송읍에 위치한 헬스장을 운영하는 퍼스널 트레이너."
                     android:textSize="20dp" />
 
             </LinearLayout>

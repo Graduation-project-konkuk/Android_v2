@@ -43,7 +43,7 @@ public class ChatFragment extends Fragment {
 //        adapter.addItem(new ChatItem());
         Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.trainer);
         // 1번 파라미터에 아이디 넣어야함
-        adapter.addItem(new ChatItem(String.valueOf((int)(Math.random()*100)), icon, "dummyTrainer1", "남자", "2020.12.23~2022.10.10"));
+        adapter.addItem(new ChatItem(String.valueOf((int)(Math.random()*100)), icon, "흑자헬스", "남자", "2012.12.23~2022.10.10"));
         Log.d(TAG, "finish dummy1");
         recyclerView.setAdapter(adapter);
 

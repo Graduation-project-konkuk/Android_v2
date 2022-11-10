@@ -61,18 +61,18 @@ public class ChatProfileFragment extends AppCompatActivity {
 
         videoLists = new ArrayList<>();
 
-        VideoList VideoList = new VideoList("https://www.youtube.com/embed/UIXcKIz_UDA");
+        VideoList VideoList = new VideoList("https://www.youtube.com/watch?v=0uixp1vmKKY");
         videoLists.add(VideoList);
-        VideoList = new VideoList("https://www.youtube.com/embed/UIXcKIz_UDA");
+        VideoList = new VideoList("https://www.youtube.com/watch?v=Fs-UgFmRX_I");
         videoLists.add(VideoList);
-        VideoList = new VideoList("https://www.youtube.com/embed/9ouC5a_la4g");
-        videoLists.add(VideoList);
-        VideoList = new VideoList("https://www.youtube.com/embed/7YoE0xCMdy0");
-        videoLists.add(VideoList);
-        VideoList = new VideoList("https://www.youtube.com/embed/8OnXkproxuE");
-        videoLists.add(VideoList);
-        VideoList = new VideoList("https://www.youtube.com/embed/2OG0Z7hZQao");
-        videoLists.add(VideoList);
+//        VideoList = new VideoList("https://www.youtube.com/embed/9ouC5a_la4g");
+//        videoLists.add(VideoList);
+//        VideoList = new VideoList("https://www.youtube.com/embed/7YoE0xCMdy0");
+//        videoLists.add(VideoList);
+//        VideoList = new VideoList("https://www.youtube.com/embed/8OnXkproxuE");
+//        videoLists.add(VideoList);
+//        VideoList = new VideoList("https://www.youtube.com/embed/2OG0Z7hZQao");
+//        videoLists.add(VideoList);
 
         YoutubeAdapter youtubeAdapter = new YoutubeAdapter(videoLists,getApplicationContext());
         recyclerView.setAdapter(youtubeAdapter);

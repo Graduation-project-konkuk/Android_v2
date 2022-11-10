@@ -59,6 +59,7 @@
 
             <TextView
                 android:id="@+id/trainer_name_txt"
+                android:text="흑자헬스"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -103,6 +104,7 @@
 
             <TextView
                 android:id="@+id/trainer_sex"
+                android:text="남자"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -125,46 +127,60 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
 
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/weight"></ImageView>
 
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/weight"></ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="경력기간"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="경력기간 : "
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold">
+                </TextView>
 
-            </TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/ex_period"
+                    android:text="2012.12.23~2022.10.10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"></TextView>
 
-            <TextView
-                android:id="@+id/ex_period"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                android:textSize="20dp"></TextView>
+                <Button
+                    android:id="@+id/period_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="10dp"
+                    android:text="수정"
+                    android:textSize="15dp"></Button>
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/period_change"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginRight="10dp"
-                android:text="수정"
-                android:textSize="15dp"></Button>
+
+
+
 
 
         </LinearLayout>
