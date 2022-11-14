@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.v3.Environment;
 import com.example.v3.R;
 import com.example.v3.member.MMainActivity;
 import com.example.v3.member.chat.sms.SmsActivity;
@@ -73,6 +74,15 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if(intentFlag[0].equals("rgMemberRadio")){
+                    intent[0] = new Intent(getApplicationContext(), MMainActivity.class);
+                    intent[0].addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                }else if(intentFlag[0].equals("rgTrainerRadio")){
+                    intent[0] = new Intent(getApplicationContext(), TMainActivity.class);
+                    intent[0].addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                }
+
 //                  65~183
                 String id = loginId.getText().toString().trim();
                 String password = loginPwd.getText().toString().trim();
@@ -114,7 +124,7 @@ public class Login extends AppCompatActivity {
                     // 요청 만들기
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
-                            .url("http://117.16.137.115:8080/user/signIn")
+                            .url(Environment.ip+"/user/signIn")
                             .post(body)
                             .build();
 
@@ -187,23 +197,16 @@ public class Login extends AppCompatActivity {
 //                                        }
 //                                    }
 //                                });
-                                Intent intent = new Intent(getApplicationContext(), TMainActivity.class);
-                                startActivity(intent);
+//                                Intent intent = new Intent(getApplicationContext(), TMainActivity.class);
+//                                startActivity(intent);
                             }
                         }
                     });
                 }
 
-//                if(intentFlag[0].equals("rgMemberRadio")){
-//                    intent[0] = new Intent(getApplicationContext(), MMainActivity.class);
-//                    intent[0].addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
 //
-//                }else if(intentFlag[0].equals("rgTrainerRadio")){
-//                    intent[0] = new Intent(getApplicationContext(), TMainActivity.class);
-//                    intent[0].addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                }
-//
-//                startActivity(intent[0]);
+                startActivity(intent[0]);
 
             }
         });

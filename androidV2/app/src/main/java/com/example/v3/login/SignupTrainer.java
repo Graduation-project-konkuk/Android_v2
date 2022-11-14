@@ -55,8 +55,8 @@ public class SignupTrainer extends AppCompatActivity {
         tSignupSex = (EditText) findViewById(R.id.tSignupSex);
         tSignupPhone = (EditText) findViewById(R.id.tSignupPhone);
         tSignupHistoryPeriod = (EditText) findViewById(R.id.tSignupHistoryPeriod);
-        tSignupProfileImg = (ImageView) findViewById(R.id.tSignupProfileImg);
-        tSignupResumeImg = (ImageView) findViewById(R.id.tSignupResumeImg);
+//        tSignupProfileImg = (ImageView) findViewById(R.id.tSignupProfileImg);
+//        tSignupResumeImg = (ImageView) findViewById(R.id.tSignupResumeImg);
 
 
         tSignupBtn = (Button) findViewById(R.id.tSignupBtn);

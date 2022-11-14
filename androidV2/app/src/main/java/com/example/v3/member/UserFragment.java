@@ -76,6 +76,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.v3.Environment;
 import com.example.v3.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -128,7 +129,7 @@ public class UserFragment extends Fragment {
         System.out.println("0");
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://59.6.66.212:8080/user/info")
+                .url(Environment.ip+"/user/info")
                 .addHeader("Authorization", prefs.getString("token",""))
                 .build();
         System.out.println(prefs.getString("token",""));

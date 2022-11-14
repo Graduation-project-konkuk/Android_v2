@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.v3.Environment;
 import com.example.v3.R;
 import com.example.v3.member.plan_adapter.AddPlan;
 import com.example.v3.member.plan_adapter.PlanAdapter;
@@ -98,7 +99,7 @@ public class PlanFragment extends Fragment {
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://59.6.66.212:8080/plan/user")
+                .url(Environment.ip+"/plan/user")
                 .addHeader("Authorization", prefs.getString("token",""))
                 .build();
 

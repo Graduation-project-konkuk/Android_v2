@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.v3.Environment;
 import com.example.v3.R;
 import com.example.v3.member.plan_adapter.dto.AddPlanDto;
 
@@ -117,7 +118,7 @@ public class AddPlan extends AppCompatActivity {
                     // 요청 만들기
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
-                            .url("http://59.6.66.212:8080/plan/user")
+                            .url(Environment.ip+"/plan/user")
                             .addHeader("Authorization", prefs.getString("token",""))
                             .post(body)
                             .build();

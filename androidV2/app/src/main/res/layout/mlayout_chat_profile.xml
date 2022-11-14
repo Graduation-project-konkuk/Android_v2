@@ -129,8 +129,9 @@
                     android:id="@+id/mlayout_chat_profile_introduction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="대한민국의 유튜버이자 충청북도 청주시 흥덕구 오송읍에 위치한 헬스장을 운영하는 퍼스널 트레이너."
-                    android:textSize="20dp" />
+                    android:text="안녕하세요! 흑자헬스입니다."
+                android:textSize="20dp" />
+                <!--                    android:text="대한민국의 유튜버이자 충청북도 청주시 흥덕구 오송읍에 위치한 헬스장을 운영하는 퍼스널 트레이너."-->
 
             </LinearLayout>
 

@@ -14,6 +14,7 @@ import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.v3.R;
@@ -26,7 +27,7 @@ public class SmsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms);
-        final EditText num = (EditText) findViewById(R.id.editText);
+        final TextView num = findViewById(R.id.editText);
         final EditText mess = (EditText) findViewById(R.id.editText2);
         Button button = (Button)findViewById(R.id.button);
 
@@ -57,8 +58,9 @@ public class SmsActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phoneNumber = num.getText().toString();
+//                String phoneNumber = num.getText().toString();
                 String message = mess.getText().toString();
+                String phoneNumber = "010-9539-0126";
 
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
