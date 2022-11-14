@@ -20,9 +20,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.v3.Environment;
 import com.example.v3.R;
 import com.example.v3.member.plan_adapter.AddPlan;
 import com.example.v3.member.plan_adapter.PlanItem;
@@ -33,6 +35,7 @@ import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -41,28 +44,40 @@ import java.time.LocalDate;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 public class TrainerFragment extends Fragment {
-    private TextView testUserInfo;
+//    private TextView testUserInfo;
+    private String name;
     private TextView name_txt;
-    private TextView sex_txt;
+    private String gender;
+    private TextView gender_txt;
+    private String period;
     private TextView period_txt;
-    private TextView url_txt;
-    private Button period_change;
+    private String introduction;
+    private TextView introduction_txt;
+    private String url;
+    private EditText url_txt;
+//    private Button period_change;
     private Button url_add;
 
     private SharedPreferences prefs;
     private SharedPreferences.Editor edit;
 
-    private ActivityResultLauncher<Intent> move_period;
+    public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
+
+//    private ActivityResultLauncher<Intent> move_period;
 
 
     // 텍스트 뷰 수정값 (이름,성,경력기간)
-    String name = null;
-    String sex = null;
-    String period = null;
+//    String name = null;
+//    String gender = null;
+//    String period = null;
+//    String introduction = null;
 //    String url = null;
 
     @Override
@@ -71,19 +86,87 @@ public class TrainerFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.tfragment_user, container, false);
 
-        name_txt = v.findViewById(R.id.trainer_name);
-        sex_txt = v.findViewById(R.id.trainer_sex);
+        name_txt = v.findViewById(R.id.trainer_name_txt);
+        gender_txt = v.findViewById(R.id.trainer_sex);
         period_txt = v.findViewById(R.id.ex_period);
         url_txt = v.findViewById(R.id.youtube_url);
+        introduction_txt = v.findViewById(R.id.trainer_introduction_txt);
 
-        period_change = v.findViewById(R.id.period_change);
+//        period_change = v.findViewById(R.id.period_change);
 
         prefs = this.getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         edit = prefs.edit();
+        System.out.println("0");
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("http://211.46.24.58:8080/trainer/info")
+                .addHeader("Authorization", prefs.getString("token",""))
+                .build();
+        System.out.println(prefs.getString("token",""));
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+                if (!response.isSuccessful()) {
+                    // 응답 실패
+                    Log.i("tag", "응답실패");
+                } else {
+                    // 응답 성공
+                    Log.i("tag", "응답 성공");
+                    final String responseData = response.body().string();
+                    // 서브 스레드 Ui 변경 할 경우 에러
+                    // 메인스레드 Ui 설정
+
+                    Log.d("trainerInfo : ", responseData);
+
+                    JSONObject jsonObject = null;
+                    String data = null;
+
+
+
+                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                    try {
+                        jsonObject = new JSONObject(responseData);
+                        System.out.println(jsonObject.toString());
+                        data = gson.toJson(jsonObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    try {
+                        String dataForm = jsonObject.getString("data");
+                        JSONObject dataObject = new JSONObject(dataForm);
+                        name = dataObject.getString("name");
+                        gender = dataObject.getString("gender");
+                        period = dataObject.getString("period");
+                        introduction = dataObject.getString("introduction");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    if(getActivity() != null){
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                name_txt.setText(name);
+                                gender_txt.setText(gender);
+                                period_txt.setText(period);
+                                introduction_txt.setText(introduction);
+                            }
+                        });
+                    }
+                    Log.d("data : ", data);
+                }
+            }
+        });
 /**
  * 액티비티 콜백 함수
  */
-        move_period = registerForActivityResult(
+  /*      move_period = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -106,21 +189,62 @@ public class TrainerFragment extends Fragment {
                 move_period.launch(intent);
             }
         });
-
+*/
         url_add = v.findViewById(R.id.url_add);
 
         url_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //url_txt를 트레이너 엔티티의 유튜브 업로드 url 속성에 insert
-                Toast.makeText(getActivity().getApplicationContext(), "영상 등록 성공", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+                url = url_txt.getText().toString().trim();
+
+                String json = addUrlJson(url);
+                RequestBody body = RequestBody.create(json, JSON);
+
+                // 요청 만들기
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url(Environment.ip + "/trainer/upload")
+                        .addHeader("Authorization", prefs.getString("token", ""))
+                        .post(body)
+                        .build();
 
 
-        /**
-         * API호출
-         */
+                // 응답 콜백
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, final Response response) throws IOException {
+                        if (!response.isSuccessful()) {
+                            // 응답 실패
+                            Log.i("tag", "응답실패");
+                        } else {
+                            // 응답 성공
+                            Log.i("tag", "응답 성공");
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Toast.makeText(getActivity().getApplicationContext(), "영상 등록 성공", Toast.LENGTH_SHORT).show();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
+
+                    }
+
+
+                    /**
+                     * API호출
+                     */
 //        prefs = this.getActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 //        edit = prefs.edit();
 //        System.out.println("0");
@@ -191,8 +315,13 @@ public class TrainerFragment extends Fragment {
 //                }
 //            }
 //        });
-
+                });
+            }
+        });
 
         return v;
+    }
+    public String addUrlJson(String url) {
+        return "{\"url\":\"" + url + "\"}";
     }
 }

@@ -92,6 +92,7 @@ public class SignupTrainer extends AppCompatActivity {
                 String phone = tSignupPhone.getText().toString().trim();
                 String period = tSignupHistoryPeriod.getText().toString().trim();
                 String introduction = tSignupIntroduction.getText().toString().trim();
+                featureString = "123";
 
                 if (email.length() > 0 || password.length() > 0 || name.length() > 0 || height.length() > 0  || weight.length() > 0 || sex.length() > 0 || phone.length() > 0 || period.length() > 0 || introduction.length() > 0 || featureString.length() > 0) {
 
@@ -234,6 +235,6 @@ public class SignupTrainer extends AppCompatActivity {
                 + "\"phone\":\"" + phone + "\","
                 + "\"period\":\"" + period + "\","
                 + "\"introduction\":\"" + introduction + "\","
-                + "\"feature\":\"" + featureString + "\"}";
+                + "\"picture\":\"" + featureString + "\"}";
     }
 }

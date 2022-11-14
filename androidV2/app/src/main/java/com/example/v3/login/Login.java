@@ -130,6 +130,7 @@ public class Login extends AppCompatActivity {
                     // MemberLogin, TrainerLogin url 분기하기
                     OkHttpClient client = new OkHttpClient();
                     Request request;
+                    System.out.println(isMember);
                     if(isMember){
                         request = new Request.Builder()
                                 .url(Environment.ip+"/user/signIn")
@@ -301,7 +302,7 @@ public class Login extends AppCompatActivity {
                         break;
                     case R.id.rgTrainerRadio:
                         intentFlag[0] = "rgTrainerRadio";
-                        isMember = true;
+                        isMember = false;
                         break;
                 }
             }
