@@ -723,17 +723,20 @@ public class PoseEstimationMain extends AppCompatActivity {
 
         totalSize.deleteCharAt(0);
 
-//복구해야댐        connect(currentBytes, String.valueOf(totalSize), this);
+        connect(currentBytes, String.valueOf(totalSize), this);
 
         //더미 테스트다!!
-        try{
-            Thread.sleep(1000);
-        } catch (Exception e){
-        }
+//        try{
+//            Thread.sleep(1000);
+//        } catch (Exception e){
+//        }
         //이거 PoseResult로 바꿔야함 복구복구!
+        /**
+         * Result로 Intent
+         */
 //        Intent toPoseResult = new Intent(getApplicationContext(), PoseResult.class);
-        Intent toPoseResult = new Intent(getApplicationContext(), PoseDummy.class);
-        startActivity(toPoseResult);
+//        Intent toPoseResult = new Intent(getApplicationContext(), PoseDummy.class);
+//        startActivity(toPoseResult);
         //여기까지!!!!
 
         Toast.makeText(PoseEstimationMain.this, "Video saved: " + mNextVideoAbsolutePath,
@@ -744,91 +747,97 @@ public class PoseEstimationMain extends AppCompatActivity {
         startPreview();
     }
 
-    //복구해야댐!
-//    public void connect(byte[] currentBytes, String totalSize, AppCompatActivity mActivity) {
-//        Handler mhandler = new Handler();
-//
-//        Log.w("connect", "연결 하는중");
-//        Thread checkUpdate = new Thread() {
-//            public void run() {
-//                // 서버 접속
-//                try {
-//                    socket = new Socket("117.16.137.118", 9999);
-//                    Log.w("서버:", "서버 접속됨");
-//                } catch (IOException e1) {
-//                    Log.w("서버:", "서버접속못함");
-//                    e1.printStackTrace();
-//                }
-//
-//                Log.w(": ", "안드로이드에서 서버로 연결요청");
-//
-//                try {
-//                    getExerciseName = getIntent().getStringExtra("name");
-//                    Log.d(TAG, "output: " + socket.getOutputStream());
-////                    Log.d(TAG, "input: " + socket.getInputStream());
-//                    dos = new DataOutputStream(socket.getOutputStream());
-//                    dis = new DataInputStream(socket.getInputStream());
-//                    bos = new BufferedOutputStream(dos);
-//
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    Log.w("버퍼:", "버퍼생성 잘못됨");
-//                }
-//                Log.w("버퍼:", "버퍼생성 잘됨");
-//
-//                try {
-//                    // 복구
-//                    Log.d("currentByte Length:{}", String.valueOf(totalSize));
-//                    System.out.println(getExerciseName+"123");
-//
-//                    dos.writeUTF(String.valueOf(totalSize)+","+getExerciseName);
-//                    dos.flush();
-//
-//                    Log.d("currentBytes:{}", String.valueOf(currentBytes));
-//                    bos.write(currentBytes, 0, currentBytes.length);
-//                    bos.flush();
-//
-//                    byte[] recvBuffer = new byte[1024];
-//                    byte[] recvBuffer2 = new byte[1024];
-//
-//                    Log.d("Server Response : {}", "응답 받기 시작");
-//                    int readSize = dis.read(recvBuffer);
-//                    Log.d("readSize : ", String.valueOf(readSize));
-//
-//                    if(readSize>0){
-//                        modelResult = new String(recvBuffer, "UTF-8");
-//                        modelResult = modelResult.substring(0, readSize);
-//                        Log.d("Server Response : {}", modelResult);
-//                    }
-////                    modelResult = readUTF8(dis);
-//                    Log.d("Server Response : {}", modelResult);
-//                    Log.d("Server Response : {}", "응답 끝");
+    /**
+     * Socket Code
+     */
+    public void connect(byte[] currentBytes, String totalSize, AppCompatActivity mActivity) {
+        Handler mhandler = new Handler();
+
+        Log.w("connect", "연결 하는중");
+        Thread checkUpdate = new Thread() {
+            public void run() {
+                // 서버 접속
+                try {
+                    socket = new Socket("211.46.24.58", 9999);
+                    Log.w("서버:", "서버 접속됨");
+                } catch (IOException e1) {
+                    Log.w("서버:", "서버접속못함");
+                    e1.printStackTrace();
+                }
+
+                Log.w(": ", "안드로이드에서 서버로 연결요청");
+
+                try {
+                    getExerciseName = getIntent().getStringExtra("name");
+                    Log.d(TAG, "output: " + socket.getOutputStream());
+//                    Log.d(TAG, "input: " + socket.getInputStream());
+                    dos = new DataOutputStream(socket.getOutputStream());
+                    dis = new DataInputStream(socket.getInputStream());
+                    bos = new BufferedOutputStream(dos);
+
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.w("버퍼:", "버퍼생성 잘못됨");
+                }
+                Log.w("버퍼:", "버퍼생성 잘됨");
+
+                try {
+                    // 복구
+                    Log.d("currentByte Length:{}", String.valueOf(totalSize));
+                    System.out.println(getExerciseName);
+
+                    dos.writeUTF(String.valueOf(totalSize)+","+getExerciseName);
+                    dos.flush();
+
+                    Log.d("currentBytes:{}", String.valueOf(currentBytes));
+                    bos.write(currentBytes, 0, currentBytes.length);
+                    bos.flush();
+
+                    byte[] recvBuffer = new byte[1024];
+                    byte[] recvBuffer2 = new byte[1024];
+
+                    Log.d("Server Response Start", "응답 받기 시작");
+                    int readSize = dis.read(recvBuffer);
+                    Log.d("readSize : ", String.valueOf(readSize));
+
+                    // Condition 개수 응답 받기 코드
+                    if(readSize>0){
+                        modelResult = new String(recvBuffer, "UTF-8");
+                        modelResult = modelResult.substring(0, readSize);
+                        Log.d("Server Response : {}", modelResult);
+                    }
+//                    modelResult = readUTF8(dis);
+//                    Log.d("Server Response : ", modelResult);
+                    Log.d("Server Response End", "응답 끝");
+                    // 현재 두번째 응답 없음(1개를 substring해야한다)
 //                    dis.read(recvBuffer2);
-//                    String jsonfile = new JSONObject(new String(recvBuffer2)).toString();
-//
-//                    socket.close();
-////복구
-//
-//
-//                    Intent toPoseResult = new Intent(getApplicationContext(), PoseResult.class);
-//                    toPoseResult.putExtra("modelResult",jsonfile);
-//                    startActivity(toPoseResult);
-//
-//
-//                } catch (Exception e) {
-//                    Log.w("error : {}", e.getMessage());
-//                }
-//            }
-//        };
-//        checkUpdate.start();
-//        try {
-//            checkUpdate.join();
-//        } catch (InterruptedException e) {
-//
-//        }
-//
-//    }
+//                    String jsonFile = new JSONObject(new String(recvBuffer2, "UTF-8")).toString();
+//                    Log.d("PoseEstimationResult\n", jsonFile);
+                    socket.close();
+//복구
+
+                    String modelLength = String.valueOf(modelResult.charAt(0));
+                    String modelResponse = modelResult.substring(1);
+                    Intent toPoseResult = new Intent(getApplicationContext(), PoseResult.class);
+                    toPoseResult.putExtra("modelLength", modelLength);
+                    toPoseResult.putExtra("modelResponse", modelResponse);
+                    startActivity(toPoseResult);
+
+
+                } catch (Exception e) {
+                    Log.w("error : {}", e.getMessage());
+                }
+            }
+        };
+        checkUpdate.start();
+        try {
+            checkUpdate.join();
+        } catch (InterruptedException e) {
+
+        }
+
+    }
 
     /**
      * Compares two {@code Size}s based on their areas.

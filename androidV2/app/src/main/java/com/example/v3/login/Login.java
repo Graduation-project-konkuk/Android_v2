@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,8 @@ import com.example.v3.R;
 import com.example.v3.member.MMainActivity;
 import com.example.v3.member.chat.sms.SmsActivity;
 import com.example.v3.trainer.TMainActivity;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,6 +49,8 @@ public class Login extends AppCompatActivity {
 
     SharedPreferences prefs;
     SharedPreferences.Editor edit;
+
+    private boolean isMember = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +92,7 @@ public class Login extends AppCompatActivity {
                 String id = loginId.getText().toString().trim();
                 String password = loginPwd.getText().toString().trim();
 
-                System.out.println("here");
+                System.out.println("id : " + id + "\n password : " + password);
                 if (id.length() > 0 || password.length() > 0) {
 
 
@@ -122,11 +127,22 @@ public class Login extends AppCompatActivity {
 
 //                    Log.d("signup json: ", formBody.toString());
                     // 요청 만들기
+                    // MemberLogin, TrainerLogin url 분기하기
                     OkHttpClient client = new OkHttpClient();
-                    Request request = new Request.Builder()
-                            .url(Environment.ip+"/user/signIn")
-                            .post(body)
-                            .build();
+                    Request request;
+                    if(isMember){
+                        request = new Request.Builder()
+                                .url(Environment.ip+"/user/signIn")
+                                .post(body)
+                                .build();
+                    }else{
+                        request = new Request.Builder()
+                                .url(Environment.ip+"/trainer/signIn")
+                                .post(body)
+                                .build();
+                    }
+
+
 
 //                    Response response = null;
 //                    try {
@@ -148,6 +164,35 @@ public class Login extends AppCompatActivity {
                             if (!response.isSuccessful()) {
                                 // 응답 실패
                                 Log.i("tag", "응답실패");
+                                final String responseData = response.body().string();
+                                JSONObject jsonObject = null;
+
+                                /**
+                                 * json 파싱
+                                 */
+                                try {
+                                    jsonObject = new JSONObject(responseData);
+                                    edit.putString("token", response.header("Authorization"));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                Gson gson = new GsonBuilder()
+                                        .setPrettyPrinting()
+                                        .create();
+                                String responseJson = gson.toJson(jsonObject);
+                                Log.d("Login Response", responseJson);
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
                             } else {
                                 // 응답 성공
                                 Log.i("tag", "응답 성공");
@@ -170,6 +215,12 @@ public class Login extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+
+                                Gson gson = new GsonBuilder()
+                                        .setPrettyPrinting()
+                                                .create();
+                                String responseJson = gson.toJson(jsonObject);
+                                Log.d("Login Response", responseJson);
 
                                 // 현재 사용자의 id 저장
                                 edit.putString("userName", id);
@@ -202,11 +253,23 @@ public class Login extends AppCompatActivity {
                             }
                         }
                     });
+                    startActivity(intent[0]);
+                } else{
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Toast.makeText(getApplicationContext(), "아이디 혹은 비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 }
 
 
 //
-                startActivity(intent[0]);
+
 
             }
         });
@@ -234,10 +297,12 @@ public class Login extends AppCompatActivity {
                         Log.d(TAG, "intent start1");
                         Log.d(TAG, "intent end1");
                         intentFlag[0] = "rgMemberRadio";
+                        isMember = true;
                         break;
                     case R.id.rgTrainerRadio:
                         intentFlag[0] = "rgTrainerRadio";
-
+                        isMember = true;
+                        break;
                 }
             }
         });

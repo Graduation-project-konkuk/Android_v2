@@ -58,20 +58,22 @@ public class SignupMember extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // 60 ~ 134
-                String id = signupId.getText().toString().trim();
+                String email = signupId.getText().toString().trim();
                 String password = signupPwd.getText().toString().trim();
                 String name = signupName.getText().toString().trim();
                 String height = signupHeight.getText().toString().trim();
                 String weight = signupWeight.getText().toString().trim();
+                String sex = signupSex.getText().toString().trim();
+                String phone = signupPhone.getText().toString().trim();
 
-                if (id.length() > 0 || password.length() > 0 || name.length() > 0) {
+                if (email.length() > 0 || password.length() > 0 || name.length() > 0 || height.length() > 0  || weight.length() > 0 || sex.length() > 0 || phone.length() > 0) {
 
 
                     // get방식 파라미터 추가
 //                    HttpUrl.Builder urlBuilder = HttpUrl.parse("117.16.137.155:8080/user/signUp").newBuilder();
 //                    urlBuilder.addQueryParameter("v", "1.0"); // 예시
 //                    String url = urlBuilder.build().toString();
-                    String json = signupJson(id, password, name, height, weight);
+                    String json = signupJson(email, password, name, height, weight, sex, phone);
                     System.out.println(json);
                     RequestBody body = RequestBody.create(json, JSON);
                     // POST 파라미터 추가
@@ -109,6 +111,16 @@ public class SignupMember extends AppCompatActivity {
                             if (!response.isSuccessful()) {
                                 // 응답 실패
                                 Log.i("tag", "응답실패");
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            Toast.makeText(getApplicationContext(), "회원가입 실패!", Toast.LENGTH_SHORT).show();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
                             } else {
                                 // 응답 성공
                                 Log.i("tag", "응답 성공");
@@ -132,6 +144,17 @@ public class SignupMember extends AppCompatActivity {
                     });
 
                     // 회원가입 종료 시점
+                }else{
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Toast.makeText(getApplicationContext(), "입력 사항을 마저 기재해주세요!", Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 }
 
                 finish();
@@ -141,12 +164,14 @@ public class SignupMember extends AppCompatActivity {
 
     }
 
-    public String signupJson(String id, String password, String name, String height, String weight){
+    public String signupJson(String email, String password, String name, String height, String weight, String sex, String phone){
 
-        return "{\"email\":\"" + id + "\","
+        return "{\"email\":\"" + email + "\","
                 + "\"password\":\"" + password + "\","
                 + "\"name\":\"" + name + "\","
                 + "\"height\":\"" + height + "\","
-                + "\"weight\":\"" + weight + "\"}";
+                + "\"weight\":\"" + weight + "\","
+                + "\"sex\":\"" + sex + "\","
+                + "\"phone\":\"" + phone + "\"}";
     }
 }

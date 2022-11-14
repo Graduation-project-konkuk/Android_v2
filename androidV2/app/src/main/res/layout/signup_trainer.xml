@@ -413,7 +413,7 @@
                     android:hint="소개란을 입력하세요">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tSignupHistoryIntroduction"
+                        android:id="@+id/tSignupIntroduction"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -422,49 +422,49 @@
             </LinearLayout>
 
 <!--            복구복구-->
-<!--            <LinearLayout-->
-<!--                android:id="@+id/tSignupLinear11"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/tSignupLinear10"-->
-<!--                android:layout_alignStart="@+id/tSignupLinear10"-->
-<!--                android:layout_alignLeft="@+id/tSignupLinear10"-->
-<!--                android:layout_marginTop="50dp"-->
-<!--                android:gravity="center_vertical"-->
-<!--                android:weightSum="5">-->
+            <LinearLayout
+                android:id="@+id/tSignupLinear11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tSignupLinear10"
+                android:layout_alignStart="@+id/tSignupLinear10"
+                android:layout_alignLeft="@+id/tSignupLinear10"
+                android:layout_marginTop="50dp"
+                android:gravity="center_vertical"
+                android:weightSum="5">
 
-<!--                &lt;!&ndash;        <TextView&ndash;&gt;-->
-<!--                &lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
-<!--                &lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--                &lt;!&ndash;            android:text="몸무게">&ndash;&gt;-->
+                <!--        <TextView-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="몸무게">-->
 
-<!--                &lt;!&ndash;        </TextView>&ndash;&gt;-->
+                <!--        </TextView>-->
 
-<!--                &lt;!&ndash;        <EditText&ndash;&gt;-->
-<!--                &lt;!&ndash;            android:id="@+id/signupWeight"&ndash;&gt;-->
-<!--                &lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
-<!--                &lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--                &lt;!&ndash;            android:layout_centerHorizontal="true"&ndash;&gt;-->
-<!--                &lt;!&ndash;            android:layout_centerVertical="true"&ndash;&gt;-->
-<!--                &lt;!&ndash;            android:layout_marginLeft="21dp"&ndash;&gt;-->
-<!--                &lt;!&ndash;            android:hint="몸무게을 입력하세요.">&ndash;&gt;-->
+                <!--        <EditText-->
+                <!--            android:id="@+id/signupWeight"-->
+                <!--            android:layout_width="wrap_content"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:layout_centerHorizontal="true"-->
+                <!--            android:layout_centerVertical="true"-->
+                <!--            android:layout_marginLeft="21dp"-->
+                <!--            android:hint="몸무게을 입력하세요.">-->
 
-<!--                &lt;!&ndash;        </EditText>&ndash;&gt;-->
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="60dp"-->
-<!--                    android:layout_marginLeft="40dp"-->
-<!--                    android:layout_weight="4"-->
-<!--                    android:text="프로필 사진을 입력하세요" />-->
+                <!--        </EditText>-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_weight="4"
+                    android:text="프로필 사진을 입력하세요" />
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/tSignupProfileImg"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="60dp"-->
-<!--                    android:layout_marginRight="40dp"-->
-<!--                    android:layout_weight="1" />-->
+                <ImageView
+                    android:id="@+id/tSignupFeature"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_weight="1" />
 
-<!--            </LinearLayout>-->
+            </LinearLayout>
 
 <!--            <LinearLayout-->
 <!--                android:id="@+id/tSignupLinear12"-->
@@ -514,7 +514,7 @@
                 android:id="@+id/tSignupLinear6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tSignupLinear10"
+                android:layout_below="@id/tSignupLinear11"
                 android:layout_marginTop="50dp"
                 android:gravity="center"
                 android:weightSum="3">

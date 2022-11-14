@@ -2,6 +2,7 @@ package com.example.v3.member.poseCamera;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import org.json.JSONObject;
 
 public class PoseResult extends AppCompatActivity {
 
+    private final String TAG = "PoseResult";
     private TextView pose_result_txt;
 
     @Override
@@ -29,10 +31,12 @@ public class PoseResult extends AppCompatActivity {
 //        pose_result_txt.setText(modelResult);
 
         Intent poseResult = getIntent();
-        String modelResult = poseResult.getStringExtra("modelResult");
+        int modelLength = Integer.parseInt(poseResult.getStringExtra("modelLength"));
+        String modelResponse = poseResult.getStringExtra("modelResponse");
+        Log.d(TAG, "response:\n" + modelResponse);
 
         try {
-            JSONObject jsonObject = new JSONObject(modelResult);
+            JSONObject jsonObject = new JSONObject(modelResponse);
             String condition = jsonObject.getString("Condition1");
             JSONObject jsonObject1 = new JSONObject(condition);
             String state1 = jsonObject1.getString("state");
@@ -53,20 +57,30 @@ public class PoseResult extends AppCompatActivity {
             String value3 = checkLevel(jsonObject3.getString("value"));
             TextView textView31 = findViewById(R.id.text31); textView31.setText(state3);
             TextView textView32 = findViewById(R.id.text32); textView32.setText(value3);
+            if(modelLength >= 4){
+                String condition4 = jsonObject.getString("Condition4");
+                JSONObject jsonObject4 = new JSONObject(condition4);
+                String state4 = jsonObject4.getString("state");
+                String value4 = checkLevel(jsonObject4.getString("value"));
+                TextView textView41 = findViewById(R.id.text41); textView41.setText(state4);
+                TextView textView42 = findViewById(R.id.text42); textView42.setText(value4);
+            }else{
+                TextView textView41 = findViewById(R.id.text41); textView41.setText("");
+                TextView textView42 = findViewById(R.id.text42); textView42.setText("");
+            }
 
-            String condition4 = jsonObject.getString("Condition4");
-            JSONObject jsonObject4 = new JSONObject(condition4);
-            String state4 = jsonObject4.getString("state");
-            String value4 = checkLevel(jsonObject4.getString("value"));
-            TextView textView41 = findViewById(R.id.text41); textView41.setText(state4);
-            TextView textView42 = findViewById(R.id.text42); textView42.setText(value4);
+            if(modelLength >= 5){
+                String condition5 = jsonObject.getString("Condition5");
+                JSONObject jsonObject5 = new JSONObject(condition5);
+                String state5 = jsonObject5.getString("state");
+                String value5 = checkLevel(jsonObject5.getString("value"));
+                TextView textView51 = findViewById(R.id.text51); textView51.setText(state5);
+                TextView textView52 = findViewById(R.id.text52); textView52.setText(value5);
+            }else{
+                TextView textView51 = findViewById(R.id.text51); textView51.setText("");
+                TextView textView52 = findViewById(R.id.text52); textView52.setText("");
+            }
 
-            String condition5 = jsonObject.getString("Condition5");
-            JSONObject jsonObject5 = new JSONObject(condition5);
-            String state5 = jsonObject5.getString("state");
-            String value5 = checkLevel(jsonObject5.getString("value"));
-            TextView textView51 = findViewById(R.id.text51); textView51.setText(state5);
-            TextView textView52 = findViewById(R.id.text52); textView52.setText(value5);
 
         }catch (JSONException e){
             e.printStackTrace();
