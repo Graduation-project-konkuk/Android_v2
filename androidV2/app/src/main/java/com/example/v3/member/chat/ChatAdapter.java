@@ -47,7 +47,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> im
     }
 
     @Override
-    public void onItemClick(ChatAdapter.ViewHolder holder, View view, int position, String id) {
+    public void onItemClick(ChatAdapter.ViewHolder holder, View view, int position, long id) {
         if(listener != null){
             listener.onItemClick(holder, view, position, id);
         }

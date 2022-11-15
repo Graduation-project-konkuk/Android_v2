@@ -5,13 +5,13 @@ import android.widget.ImageView;
 
 public class ChatItem {
 
-    String id;
+    long id;
     Bitmap trainerImg;
     String trainerName;
     String trainerSex;
     String trainerHistoryPeriod;
 
-    public ChatItem(String id, Bitmap trainerImg, String trainerName, String trainerSex, String trainerHistoryPeriod) {
+    public ChatItem(long id, Bitmap trainerImg, String trainerName, String trainerSex, String trainerHistoryPeriod) {
         this.id = id;
         this.trainerImg = trainerImg;
         this.trainerName = trainerName;
@@ -19,11 +19,11 @@ public class ChatItem {
         this.trainerHistoryPeriod = trainerHistoryPeriod;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -58,7 +58,7 @@
         <activity android:name=".member.poseCamera.PoseResult" />
         <activity android:name=".trainer.TMainActivity" />
         <activity android:name=".login.SignupTrainer" />
-        <activity android:name=".member.chat.ChatProfileFragment" />
+        <activity android:name=".member.chat.ChatProfile" />
         <activity
             android:name=".member.chat.video.VideoFullScreen"
             android:screenOrientation="landscape" />

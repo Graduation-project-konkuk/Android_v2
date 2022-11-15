@@ -251,10 +251,11 @@ public class Login extends AppCompatActivity {
 //                                });
 //                                Intent intent = new Intent(getApplicationContext(), TMainActivity.class);
 //                                startActivity(intent);
+                                startActivity(intent[0]);
                             }
                         }
                     });
-                    startActivity(intent[0]);
+
                 } else{
                     runOnUiThread(new Runnable() {
                         @Override

@@ -92,7 +92,6 @@ public class SignupTrainer extends AppCompatActivity {
                 String phone = tSignupPhone.getText().toString().trim();
                 String period = tSignupHistoryPeriod.getText().toString().trim();
                 String introduction = tSignupIntroduction.getText().toString().trim();
-                featureString = "123";
 
                 if (email.length() > 0 || password.length() > 0 || name.length() > 0 || height.length() > 0  || weight.length() > 0 || sex.length() > 0 || phone.length() > 0 || period.length() > 0 || introduction.length() > 0 || featureString.length() > 0) {
 
@@ -102,7 +101,7 @@ public class SignupTrainer extends AppCompatActivity {
 //                    urlBuilder.addQueryParameter("v", "1.0"); // 예시
 //                    String url = urlBuilder.build().toString();
                     String json = signupJson(email, password, name, height, weight, sex, phone, period, introduction, featureString);
-                    System.out.println(json);
+//                    System.out.println(json);
                     RequestBody body = RequestBody.create(json, JSON);
                     // POST 파라미터 추가
 //                    RequestBody formBody = new FormBody.Builder()
