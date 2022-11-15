@@ -123,13 +123,23 @@ public class ChatFragment extends Fragment {
                             String name = dataObject.getString("name");
                             String gender = dataObject.getString("gender");
                             String period = dataObject.getString("period");
-                            String image = dataObject.getString("image");
+//                            String image = dataObject.getString("image");
 
                             // String to Bitmap
-                            byte[] encodeByte = Base64.decode(image, Base64.DEFAULT);
-                            Bitmap imageBitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+//                            byte[] encodeByte = Base64.decode(image, Base64.DEFAULT);
+//                            Bitmap imageBitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+                            // Dummy Image 입력
+                            Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.trainer);
 
-                            adapter.addItem(new ChatItem(id, imageBitmap, name, gender, period));
+                            adapter.addItem(new ChatItem(id, icon, name, gender, period));
+                        }
+                        if(getActivity() != null){
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    recyclerView.setAdapter(adapter);
+                                }
+                            });
                         }
 
                     } catch (JSONException e) {
@@ -152,14 +162,13 @@ public class ChatFragment extends Fragment {
 //        adapter.addItem(new ChatItem(String.valueOf((int)(Math.random()*100)), icon, "흑자헬스", "남자", "2012.12.23~2022.10.10"));
         Log.d(TAG, "finish dummy1");
 
-        recyclerView.setAdapter(adapter);
-
         adapter.setOnItemClickListener(new OnChatItemClickListener() {
             @Override
             public void onItemClick(ChatAdapter.ViewHolder holder, View view, int position, long id) {
                 Log.d("ChatFragment", "Intent Start!");
                 Intent intent = new Intent(getContext(), ChatProfile.class);
-                intent.putExtra("id", id);
+                Log.d("ChatFragment", String.valueOf(id));
+                intent.putExtra("id", String.valueOf(id));
                 startActivity(intent);
                 Log.d("ChatFragment", "Intent Stop!");
             }

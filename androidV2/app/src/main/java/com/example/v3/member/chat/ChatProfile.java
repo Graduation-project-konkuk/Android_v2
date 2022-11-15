@@ -43,7 +43,7 @@ import okhttp3.Response;
 
 public class ChatProfile extends AppCompatActivity {
 
-    static final String TAG = "ChatProfileFragment";
+    static final String TAG = "ChatProfile";
 
     private SharedPreferences prefs;
     private SharedPreferences.Editor edit;
@@ -69,7 +69,8 @@ public class ChatProfile extends AppCompatActivity {
         setContentView(R.layout.mlayout_chat_profile);
 
         Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
+        Long id = Long.parseLong(intent.getStringExtra("id"));
+        Log.i(TAG, String.valueOf(id));
 
         prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         edit = prefs.edit();
@@ -108,6 +109,18 @@ public class ChatProfile extends AppCompatActivity {
                 if (!response.isSuccessful()) {
                     // 응답 실패
                     Log.i("tag", "응답실패");
+                    final String responseData = response.body().string();
+                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                    JSONObject jsonObject = null;
+                    String data = null;
+                    try {
+                        jsonObject = new JSONObject(responseData);
+                        Log.d(TAG, "실패로그");
+                        Log.d(TAG, "jsonObject\n" + jsonObject.toString());
+                        data = gson.toJson(jsonObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     // 응답 성공
                     Log.i("tag", "응답 성공");
@@ -131,33 +144,49 @@ public class ChatProfile extends AppCompatActivity {
                     }
 
 
-                    //"name":name, "gender":gender, "period":period, "introduction":introduction, "video":[1,2,3,4]
+//                    {"success":true,"code":0,"msg":"성공하였습니다. HappyPepe! XD","data":{"name":"3","gender":"3","period":"3","introduction":"3","video":[],"authorities":["ROLE_TRAINER"]}}
 
                     try {
+                        JSONObject dataObject = jsonObject.getJSONObject("data");
 
-                        String name = jsonObject.getString("name");
-                        String gender = jsonObject.getString("gender");
-                        String period = jsonObject.getString("period");
-                        String introduction = jsonObject.getString("introduction");
+                        String name = dataObject.getString("name");
+                        String gender = dataObject.getString("gender");
+                        String period = dataObject.getString("period");
+                        String introduction = dataObject.getString("introduction");
 
                         ArrayList<VideoList> videoLists = new ArrayList<>();
-                        JSONArray arrayData = jsonObject.getJSONArray("video");
-                        for(int i=0; i<arrayData.length(); i++){
-                            videoLists.add(new VideoList(arrayData.getString(i)));
+                        // Video 파싱 후 adapter에 적용하기
+//                        JSONArray arrayData = dataObject.getJSONArray("video");
+//                        for(int i=0; i<arrayData.length(); i++){
+//                            videoLists.add(new VideoList(arrayData.getString(i)));
+//                        }
+                        videoLists.add(new VideoList("https://www.youtube.com/watch?v=0uixp1vmKKY"));
+                        videoLists.add(new VideoList("https://www.youtube.com/watch?v=Bx6hyFYiP_U"));
+                        videoLists.add(new VideoList("https://www.youtube.com/watch?v=ggFJc2tEHjo"));
+                        videoLists.add(new VideoList("https://www.youtube.com/watch?v=OvQsLaq-N0I"));
+
+//                        String image = jsonObject.getString("image");
+//                        byte[] encodeByte = Base64.decode(image, Base64.DEFAULT);
+//                        Bitmap imageBitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+
+                        if(getApplicationContext() != null){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // recyclerView만들기
+                                    mlayout_chat_profile_name.setText(name);
+                                    mlayout_chat_profile_sex.setText(gender);
+                                    mlayout_chat_profile_historyPeriod.setText(period);
+                                    mlayout_chat_profile_introduction.setText(introduction);
+                                    // Dummy Image 입력
+                                    Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.trainer);
+                                    mlayout_chat_profile_img.setImageBitmap(icon);
+                                    YoutubeAdapter youtubeAdapter = new YoutubeAdapter(videoLists,getApplicationContext());
+                                    recyclerView.setAdapter(youtubeAdapter);
+                                }
+                            });
                         }
 
-                        String image = jsonObject.getString("image");
-                        byte[] encodeByte = Base64.decode(image, Base64.DEFAULT);
-                        Bitmap imageBitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-
-                        // recyclerView만들기
-                        mlayout_chat_profile_name.setText(name);
-                        mlayout_chat_profile_sex.setText(gender);
-                        mlayout_chat_profile_historyPeriod.setText(period);
-                        mlayout_chat_profile_introduction.setText(introduction);
-                        mlayout_chat_profile_img.setImageBitmap(imageBitmap);
-                        YoutubeAdapter youtubeAdapter = new YoutubeAdapter(videoLists,getApplicationContext());
-                        recyclerView.setAdapter(youtubeAdapter);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
